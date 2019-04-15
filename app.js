@@ -28,12 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/Customer', CustomerRouter);
-app.use('/Account', AccountRouter);
-app.use('/Bill', BillRouter);
-app.use('/Recipient', RecipientRouter);
-app.use('/CreditCard', CreditCardRouter);
-app.use('/Stock', StockRouter);
+app.use('/Customers', CustomerRouter);
+app.use('/Accounts', AccountRouter);
+app.use('/Bills', BillRouter);
+app.use('/Recipients', RecipientRouter);
+app.use('/CreditCards', CreditCardRouter);
+app.use('/Stocks', StockRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
