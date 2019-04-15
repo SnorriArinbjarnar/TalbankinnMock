@@ -47,7 +47,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get all bills by customer
-  router.get('/Customer/:customerId', (req, res, next) => {
+  router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
     Bill
         .find({'CustomerID' : id})
@@ -72,7 +72,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get all bills by customer and creditor
-  router.get('/Customer/:customerId/:creditor', (req, res, next) => {
+  router.get('/Customers/:customerId/:creditor', (req, res, next) => {
     const id = req.params.customerId;
     const creditor = req.params.creditor;
 

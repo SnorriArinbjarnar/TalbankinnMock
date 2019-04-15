@@ -51,7 +51,7 @@ router.get('/', (req, res, next) => {
   });
 
 // Find all Accounts per customer
-  router.get('/Customer/:customerId', (req, res, next) => {
+  router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
     Account
         .find({'CustomerID' : id})
@@ -76,7 +76,7 @@ router.get('/', (req, res, next) => {
   });
 
   //Find all Accounts per Customer and Type
-  router.get('/Customer/:customerId/:type', (req, res, next) => {
+  router.get('/Customers/:customerId/:type', (req, res, next) => {
     const id = req.params.customerId;
     const type = req.params.type;
     Account

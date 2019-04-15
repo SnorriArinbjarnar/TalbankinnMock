@@ -51,7 +51,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get stock prices by name
-  router.get('/Company/:companyName', (req, res, next) => {
+  router.get('/Companys/:companyName', (req, res, next) => {
     const name = req.params.companyName;
 
     Stock

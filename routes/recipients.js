@@ -45,7 +45,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get all recipeints per customer
-  router.get('/Customer/:customerId', (req, res, next) => {
+  router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
     Recipient
         .find({'CustomerID' : id})
@@ -70,7 +70,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get recipient per customer and name
-  router.get('/Customer/:customerId/:First', (req, res, next) => {
+  router.get('/Customers/:customerId/:First', (req, res, next) => {
     const id = req.params.customerId;
     const First = req.params.First;
     Recipient

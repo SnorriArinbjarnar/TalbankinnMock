@@ -47,7 +47,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get all cards by customer
-  router.get('/Customer/:customerId', (req, res, next) => {
+  router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
     CreditCard
         .find({'CustomerID' : id})
@@ -72,7 +72,7 @@ router.get('/', (req, res, next) => {
   });
 
   //get all cards by customer and type
-  router.get('/Customer/:customerId/:type', (req, res, next) => {
+  router.get('/Customers/:customerId/:type', (req, res, next) => {
     const id = req.params.customerId;
     const cardType = req.params.type;
     CreditCard
