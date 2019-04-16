@@ -44,7 +44,7 @@ https://talbankinnmock.azurewebsites.net/
 ```
 ### Accounts
 
-#### GET /Account
+#### GET /Accounts
 Get all accounts
 ```json
 [
@@ -66,7 +66,7 @@ Get all accounts
     }
 ]
 ```
-#### GET /Account/(id) 
+#### GET /Accounts/(id) 
 get account by id
 ```json
     {
@@ -78,11 +78,11 @@ get account by id
         "__v": 0
     }
    ```
-#### GET /Account/Customers/{id}
+#### GET /Accounts/Customers/{id}
  find all accounts of customer
-#### GET /Account/Customers/{id}/{type} 
+#### GET /Accounts/Customers/{id}/{type} 
 find all account per customer and type of account
-#### POST /Account 
+#### POST /Accounts 
 create new account.
 Request body:
 ```json
@@ -94,7 +94,7 @@ Request body:
     }
    ```
 
-#### PUT /Account/{id} 
+#### PUT /Accounts/{id} 
 update account by id
 ```json
     {
