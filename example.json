@@ -12,7 +12,7 @@
         "name": "MIT"
       }
     },
-    "host": "https://talbankinnmock.azurewebsites.net/",
+    "host": "https://talbankinnmock.azurewebsites.net",
     "basePath": "/",
     "schemes": [
       "http"
