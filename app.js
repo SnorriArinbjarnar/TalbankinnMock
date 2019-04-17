@@ -28,9 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-//app.use('/api/v1',indexRouter);
-//app.use('/', indexRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/v1',indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/Customers', CustomerRouter);
 app.use('/Accounts', AccountRouter);
