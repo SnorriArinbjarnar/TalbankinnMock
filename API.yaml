@@ -1,0 +1,62 @@
+swagger: "2.0"
+info:
+  description: "This is a sample for a server containing list of videos"
+  version: "1.0.0"
+  title: "Videos"
+  contact:
+    email: "snorriarinbjarnar@gmail.com"
+host: "petstore.swagger.io"
+basePath: "/api/v1"
+tags:
+ - name: "Videos"
+   description: "everything about your videos"
+ - name: "Doors"
+   description: "exciting things about doors"
+schemes:
+ - "http"
+ - "https"
+paths:
+  /videos/index:
+    get:
+      tags:
+      - "Videos"
+      summary: "Gives us list of all videos"
+      description: "This is a get request for all videos "
+      operationId: "getVideos"
+      consumes: 
+      - "application/json"
+      produces:
+       - "application/json"
+      responses:
+        405:
+          description: "Invalid Input"
+  
+  /videos/view/{id}:
+    get:
+      tags:
+      - "Videos"
+      summary: "view a video"
+      description: "This endpoint "
+      produces:
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "This is the unique identifier"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+        
+definitions:
+  Videos:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      
+      
+
+  

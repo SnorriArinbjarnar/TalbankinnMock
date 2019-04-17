@@ -1,0 +1,1176 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Talbankinn MockAPI",
+      "description": "An Api for Talbankinn for use to setup minimal viable product for talbankinn",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "name": "team caps lock"
+      },
+      "license": {
+        "name": "MIT"
+      }
+    },
+    "host": "https://talbankinnmock.azurewebsites.net/",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "tags" : [
+        "Customers",
+        "Accounts",
+        "Bills",
+        "Recipients",
+        "Stocks",
+        "CreditCards"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/Customers": {
+        "get": {
+            "tags" : [
+                "Customers"  
+            ],
+          "description": "Returns all customers from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "customer response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Customer"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Customers/{id}": {
+        "get": {
+          "tags" : [
+            "Customers"  
+        ],
+          "description": "Returns a user based on a single ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "customer response",
+              "schema": {
+                "$ref": "#/definitions/Customer"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Accounts": {
+        "get": {
+            "tags" : [
+                "Accounts"
+                
+            ],
+          "description": "Returns all accounts from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Account"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags" : [
+            "Accounts" 
+        ],
+          "description": "Creates a new Account in the store.  Duplicates are allowed",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "newly created Account to add to system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Accounts/{id}": {
+        "get": {
+          "tags" : [
+            "Accounts" 
+         ],
+          "description": "Returns a account based on a single ID",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of account to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags" : [
+            "Accounts" 
+          ],
+          "description": "updates account based on ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of account to update",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+            ,
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated account object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAccount"
+            }
+           }
+          ],
+          "responses": {
+            "400": {
+              "description": "invalid account supplied"
+            },
+            "404": {
+              "description": "account not found"
+            },
+            
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Accounts/Customers/{id}": {
+        "get": {
+          "tags" : [
+            "Accounts"  
+        ],
+          "description": "Returns a account based on a customer ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his accounts",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Accounts/Customers/{id}/{type}": {
+        "get": {
+          "tags" : [
+            "Accounts"  
+        ],
+          "description": "Returns a account based on a customer ID and type of account, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his accounts",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "type",
+              "in": "path",
+              "description": "type of account",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Recipients": {
+        "get": {
+            "tags" : [
+                "Recipients"
+                
+            ],
+          "description": "Returns all recipients from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Recipient"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags" : [
+            "Recipients"
+        ],
+          "description": "Creates a new Recipient in the store.  Duplicates are allowed",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "newly created Recipient to add to system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Recipient"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Recipients/{id}": {
+        "get": {
+          "tags" : [
+            "Recipients"
+        ],
+          "description": "Returns a recipient based on a single ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of recipient to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Recipients/Customers/{id}": {
+        "get": {
+          "tags" : [
+            "Recipients"  
+        ],
+          "description": "Returns a recipient based on a customer ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his recipients",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Recipients/Customers/{id}/{recipientFirstName}": {
+        "get": {
+          "tags" : [
+            "Recipients"  
+        ],
+          "description": "Returns a recipient based on a customer ID and recipient first name, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his recipients",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "recipientFirstName",
+              "in": "path",
+              "description": "recipients first name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Bills": {
+        "get": {
+            "tags" : [
+                "Bills"
+                
+            ],
+          "description": "Returns all bills from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "bill response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Bill"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Bills/{id}": {
+        "get": {
+          "tags" : [
+            "Bills"
+        ],
+          "description": "Returns a bill based on a single ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of bill to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "bill response",
+              "schema": {
+                "$ref": "#/definitions/Bill"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Bills/Customers/{id}": {
+        "get": {
+          "tags" : [
+            "Bills"  
+        ],
+          "description": "Returns a bill based on a customer ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his bils",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "bill response",
+              "schema": {
+                "$ref": "#/definitions/Bill"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Bills/Customers/{id}/{creditor}": {
+        "get": {
+          "tags" : [
+            "Bills"  
+        ],
+          "description": "Returns a bill based on a customer ID and creditor, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his bills",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "creditor",
+              "in": "path",
+              "description": "owner of bill",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "bill response",
+              "schema": {
+                "$ref": "#/definitions/Bill"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Bills/Customers/{billid}/{accountid}": {
+        "delete": {
+          "tags" : [
+            "Bills"  
+           ],
+          "description": "delete a bill upon paying it",
+          "parameters": [
+            {
+              "name": "billid",
+              "in": "path",
+              "description": "ID of bill to pay",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+            ,
+            {
+              "name": "accountid",
+              "in": "path",
+              "description": "id of bill to pay from",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "bill deleted"
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Stocks": {
+        "get": {
+            "tags" : [
+                "Stocks"
+                
+            ],
+          "description": "Returns all stocks from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "stock response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Stock"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Stocks/{id}": {
+        "get": {
+          "tags" : [
+            "Stocks"
+        ],
+          "description": "Returns a stock based on a single ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of stock to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "stock response",
+              "schema": {
+                "$ref": "#/definitions/Stock"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Stocks/Companys/{companyName}": {
+        "get": {
+          "tags" : [
+            "Stocks"  
+        ],
+          "description": "Returns a stock based on a company name, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "companyName",
+              "in": "path",
+              "description": "name of company to fetch all his stock info",
+              "required": true,
+              "type": "string"
+              
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "recipient response",
+              "schema": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/CreditCards": {
+        "get": {
+            "tags" : [
+                "CreditCards"
+                
+            ],
+          "description": "Returns all creditcards from the system that the user has access to",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "creditcard response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/CreditCard"
+                }
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/CreditCards/{id}": {
+        "get": {
+          "tags" : [
+            "CreditCards"  
+        ],
+          "description": "Returns a creditcard based on a single ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of creditcard to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "creditcard response",
+              "schema": {
+                "$ref": "#/definitions/CreditCard"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags" : [
+            "CreditCards" 
+          ],
+          "description": "updates creditcard based on ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of creditcard to update",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+            ,
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated creditcard object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCreditCard"
+            }
+           }
+          ],
+          "responses": {
+            "400": {
+              "description": "invalid account supplied"
+            },
+            "404": {
+              "description": "account not found"
+            },
+            
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/CreditCards/Customers/{id}": {
+        "get": {
+          "tags" : [
+            "CreditCards"  
+        ],
+          "description": "Returns a creditcard based on a customer ID, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his creditcards",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "creditcard response",
+              "schema": {
+                "$ref": "#/definitions/CreditCard"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/CreditCards/Customers/{id}/{type}": {
+        "get": {
+          "tags" : [
+            "CreditCards"  
+        ],
+          "description": "Returns a creditcard based on a customer ID and type of card, if the user does not have access to the pet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of customer to fetch all his creditcards",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "type",
+              "in": "path",
+              "description": "type of creditcard",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "creditcard response",
+              "schema": {
+                "$ref": "#/definitions/CreditCard"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Bill": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "CustomerID": {
+              "$ref": "#definitions/Customer"
+            },
+            "PayerName": {
+                "type": "string",
+                "example":"Palli"
+            },
+            "Creditor": {
+                "type": "string",
+                "example":"Landsbankinn"
+            },
+            "CreditorAccountNumber": {
+                "type": "string",
+                "example":"1108443139-26-222"
+              },
+              "DueDate": {
+                "type": "string",
+                "format":"DD-MM-YYYY",
+                "example":"25-05-2019"
+            },
+            "Deadline": {
+                "type": "string",
+                "format":"DD-MM-YYYY",
+                "example":"25-05-2019"
+              },
+              "Amount": {
+                "type": "integer",
+                "example":5000
+              }
+          }
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "FirstName": {
+              "type": "string",
+              "example":"Leifur"
+            },
+            "LastName": {
+                "type": "string",
+                "example":"Páls"
+            },
+            "SocialNumber": {
+                "type": "string",
+                "example":"300288-3399"
+            },
+            "Address": {
+                "type": "string",
+                "example":"Logafold 15"
+              },
+              "City": {
+                "type": "string",
+                "example":"Reykjavik"
+            },
+            "email": {
+                "type": "string",
+                "example":"Leifur@tibi.is"
+              }
+          }
+        
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "CustomerID": {
+              "$ref": "#definitions/Customer"
+            },
+            "CurrentBalance": {
+                "type": "integer",
+                "example":5000
+            },
+            "AccountType": {
+                "type": "string",
+                "example":"Vaxtareikningur"
+            },
+            "AccountNumber": {
+                "type": "string",
+                "example":"1505964299-26-2029"
+              }
+          }
+        
+      },
+      "UpdateAccount": {
+        "type": "object",
+        "properties": {
+            "CurrentBalance": {
+              "type": "number",
+              "example":5000
+            }
+        }
+      },
+      "UpdateCreditCard": {
+        "type": "object",
+        "properties": {
+            "CurrentBalance": {
+              "type": "number",
+              "example":5000
+            }
+        }
+      },
+      "Recipient": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "CustomerID": {
+              "$ref": "#definitions/Customer"
+            },
+            "FirstName": {
+                "type": "string",
+                "example":"Páll"
+            },
+            "LastName": {
+                "type": "string",
+                "example":"Mahoney"
+            },
+            "AccountNumber": {
+                "type": "string",
+                "example":"1505964299-26-2029"
+              }
+          }
+        
+      },
+      "Stock": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "CompanyName": {
+              "type": "string",
+              "example":"Arion Banki hf."
+            },
+            "ExchangeRate": {
+                "type": "number",
+                "example":"76.5"
+            },
+            "PriceChangePercent": {
+                "type": "number",
+                "example":"0.42"
+            },
+            "StockBid": {
+                "type": "number",
+                "example":"9.57"
+              },
+              "StockAsk": {
+                "type": "number",
+                "example":"9.6"
+              },
+              "Volume": {
+                "type": "number",
+                "example":"9997994"
+              },
+              "Highest": {
+                "type": "number",
+                "example":"9.61"
+              },
+              "Lowest": {
+                "type": "number",
+                "example":"9.6"
+              },
+              "Currency": {
+                "type": "string",
+                "example":"ISK"
+              }
+          }
+        
+      },
+      "CreditCard": {
+        "type": "object",
+        "properties": {
+            "_id": {
+              "type": "string",
+              "example":"5c780481c0d06446b82f2352"
+            },
+            "CustomerID": {
+              "$ref": "#definitions/Customer"
+            },
+            "CurrentBalance": {
+                "type": "number",
+                "example":5000
+            },
+            "CardType": {
+                "type": "string",
+                "example":"VISA"
+            }
+            
+          }
+        
+      },
+      "ErrorModel": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
