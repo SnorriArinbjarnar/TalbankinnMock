@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
             console.log(doc);
 
             res.status(200).json(doc);
-           
+
         })
         .catch(err => {
             console.log(err);
@@ -20,22 +20,22 @@ router.get('/', (req, res, next) => {
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  router.get('/:cardId', (req, res, next) => {
+});
+
+router.get('/:cardId', (req, res, next) => {
     CreditCard
         .findById(req.params.cardId)
         .exec()
         .then(doc => {
             console.log(doc);
-            if(!doc){
+            if (!doc) {
                 return res.status(404).json({
                     message: 'Creditcard not found'
                 })
             }
             res.status(200).json(doc);
-           
+
         })
         .catch(err => {
             console.log(err);
@@ -43,17 +43,17 @@ router.get('/', (req, res, next) => {
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  //get all cards by customer
-  router.get('/Customers/:customerId', (req, res, next) => {
+});
+
+//get all cards by customer
+router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
     CreditCard
-        .find({'CustomerID' : id})
+        .find({ 'CustomerID': id })
         .exec()
         .then(doc => {
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
             }
             else {
@@ -69,17 +69,17 @@ router.get('/', (req, res, next) => {
             })
         })
 
-  });
+});
 
-  //get all cards by customer and type
-  router.get('/Customers/:customerId/:type', (req, res, next) => {
+//get all cards by customer and type
+router.get('/Customers/:customerId/:type', (req, res, next) => {
     const id = req.params.customerId;
     const cardType = req.params.type;
     CreditCard
-        .find({'CustomerID' : id, 'CardType' : cardType})
+        .find({ 'CustomerID': id, 'CardType': cardType })
         .exec()
         .then(doc => {
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
             }
             else {
@@ -95,10 +95,10 @@ router.get('/', (req, res, next) => {
             })
         })
 
-  });
+});
 
-  router.put('/:cardId', (req, res, next)=>{
-    if(!req.body.CurrentBalance){
+router.put('/:cardId', (req, res, next) => {
+    if (!req.body.CurrentBalance) {
         return res.status(400).send({
             message: 'CurrentBalance cannot be empty'
         });
@@ -111,27 +111,27 @@ router.get('/', (req, res, next) => {
     let fields = {
         CurrentBalance: req.body.CurrentBalance
     };
-    
-
-    CreditCard.update({_id: id}, fields, {new: true})
-              .exec()
-              .then(result=>{
-                  if(!result){
-                      return res.status(404).send({
-                          message: `Order not found with id ${id}`
-                      })
-                  }
-                console.log(result);
-                res.status(200).json(result);
-              })
-              .catch(err => {
-                  console.log(err);
-                  return res.status(500).json({
-                      error: err
-                  })
-
-              })
-  });
 
 
-  module.exports = router;
+    CreditCard.update({ _id: id }, fields, { new: true })
+        .exec()
+        .then(result => {
+            if (!result) {
+                return res.status(404).send({
+                    message: `Order not found with id ${id}`
+                })
+            }
+            console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(500).json({
+                error: err
+            })
+
+        })
+});
+
+
+module.exports = router;
