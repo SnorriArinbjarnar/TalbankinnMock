@@ -28,6 +28,7 @@ router.post('/', (req, res, next) => {
         UserId: req.body.UserId,
         Date: req.body.Date,
         Error: req.body.Error,
+        ErrorMsg: req.body.ErrorMsg
     });
     return mainApiErrorLog.save()
         .then(result => {
@@ -38,7 +39,8 @@ router.post('/', (req, res, next) => {
                     _id: result._id,
                     UserId: result.UserId,
                     Date: result.Date,
-                    Error: result.Error
+                    Error: result.Error,
+                    ErrorMsg: result.ErrorMsg
                 }
             })
         })
