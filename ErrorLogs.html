@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        function createNode(element) {
+            return document.createElement(element);
+        }
+        function append(parent, el) {
+            return parent.appendChild(el);
+        }
+
+        const ul = document.getElementById('authors');
+        const url = 'https://talbankinnmock.azurewebsites.net/LuisLowConfidencyLogs';
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("the data: ", data);
+            
+            let errs = data.results;
+            return errs.map(function(err) {
+            let li = createNode('li'),
+                span = createNode('span');
+     
+            span.innerHTML = `User was in state: ${err.UserState}, Date: ${err.Date}, query: ${err.LuisData.query}, intent: ${err.LuisData.topScoringIntent}, entities: ${err.LuisData.entities}`;
+            append(li, span);
+            append(ul, li);
+            })
+        })
+        .catch(function(error) {
+            console.log(JSON.stringify("error: ",error));
+        });   
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <ul id = "errs">
+
+    </ul>
+</body>
+</html>
