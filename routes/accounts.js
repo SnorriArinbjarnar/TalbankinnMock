@@ -101,6 +101,34 @@ router.get('/', (req, res, next) => {
 
   });
 
+  //Find all Accounts per Customer and Type
+  router.get('/Customers/:customerId/acc/:accountNumber', (req, res, next) => {
+    const id = req.params.customerId;
+    const accNumber = req.params.accountNumber;
+    console.log("accNumber: ", accNumber, " id: ", id);
+    
+    Account
+        .find({'CustomerID' : id, 'AccountNumber' : accNumber})
+        .exec()
+        .then(doc => {
+            if(doc){
+                res.status(200).json(doc);
+            }
+            else {
+                res.status(404).json({
+                    message: 'No valid entry found'
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        })
+
+  });
+
 
   router.post('/', (req, res, next)=>{
     Customer.findById(req.body.CustomerID)
