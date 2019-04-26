@@ -11,10 +11,10 @@ router.get('/', (req, res, next) => {
         .then(doc => {
             console.log(doc);
             //if(doc.length >= 0){
-                res.status(200).json(doc);
+            res.status(200).json(doc);
             //}
             //else {
-              //  res.status(404).json();
+            //  res.status(404).json();
             //}
         })
         .catch(err => {
@@ -23,10 +23,10 @@ router.get('/', (req, res, next) => {
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  router.get('/:_id', (req, res, next) => {
+});
+
+router.get('/:_id', (req, res, next) => {
     const id = req.params._id;
     Stock
         //.find({'_id' : id})
@@ -34,11 +34,11 @@ router.get('/', (req, res, next) => {
         .exec()
         .then(doc => {
             console.log(doc);
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
             }
             else {
-                res.status(404).json({message: 'No valid entry found'});
+                res.status(404).json({ message: 'No valid entry found' });
             }
         })
         .catch(err => {
@@ -47,18 +47,18 @@ router.get('/', (req, res, next) => {
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  //get stock prices by name
-  router.get('/Companys/:companyName', (req, res, next) => {
+});
+
+//get stock prices by name
+router.get('/Companys/:companyName', (req, res, next) => {
     const name = req.params.companyName;
 
     Stock
-        .find({'CompanyName': name})
+        .find({ 'CompanyName': name })
         .exec()
         .then(doc => {
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
             }
             else {
@@ -74,6 +74,6 @@ router.get('/', (req, res, next) => {
             })
         })
 
-  });
+});
 
-  module.exports = router;
+module.exports = router;

@@ -11,17 +11,17 @@ const Customer = require('../schemas/Customer');
     })
   });*/
 
-  router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     Customer
         .find()
         .exec()
         .then(doc => {
             console.log(doc);
             //if(doc.length >= 0){
-                res.status(200).json(doc);
+            res.status(200).json(doc);
             //}
             //else {
-              //  res.status(404).json();
+            //  res.status(404).json();
             //}
         })
         .catch(err => {
@@ -30,10 +30,10 @@ const Customer = require('../schemas/Customer');
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  router.get('/:_id', (req, res, next) => {
+});
+
+router.get('/:_id', (req, res, next) => {
     const id = req.params._id;
     Customer
         //.find({'_id' : id})
@@ -41,11 +41,11 @@ const Customer = require('../schemas/Customer');
         .exec()
         .then(doc => {
             console.log(doc);
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
             }
             else {
-                res.status(404).json({message: 'No valid entry found'});
+                res.status(404).json({ message: 'No valid entry found' });
             }
         })
         .catch(err => {
@@ -54,7 +54,7 @@ const Customer = require('../schemas/Customer');
                 error: err
             })
         });  //If i dont pass anything it will find all elements
-  
-  });
 
-  module.exports = router;
+});
+
+module.exports = router;
