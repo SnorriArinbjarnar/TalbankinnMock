@@ -14,6 +14,7 @@ const RecipientRouter = require('./routes/recipients');
 const CreditCardRouter = require('./routes/creditcards');
 const StockRouter = require('./routes/stocks');
 const LuisLowConfidencyLogRouter = require('./routes/luisLowConfidencyLogs');
+const MainApiErrorLogRouter = require('./routes/mainApiErrorLogs');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use('/Recipients', RecipientRouter);
 app.use('/CreditCards', CreditCardRouter);
 app.use('/Stocks', StockRouter);
 app.use('/LuisLowConfidencyLogs', LuisLowConfidencyLogRouter);
+app.use('/MainApiErrorLogs', MainApiErrorLogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
