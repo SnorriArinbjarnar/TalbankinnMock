@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
   });
 
   router.get('/:recipientId', (req, res, next) => {
-    CreditCard
+    Recipient
         .findById(req.params.recipientId)
         .exec()
         .then(doc => {
