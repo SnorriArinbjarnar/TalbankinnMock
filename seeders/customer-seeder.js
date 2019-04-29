@@ -1,8 +1,7 @@
-const Customer = require('../Schemas/Customer');
+const Customer = require('../schemas/Customer');
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 
 const path = require('path');
 dotenv.config({path :'../.env'});
