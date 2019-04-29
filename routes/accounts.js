@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Account = require('../schemas/Account');
 const Customer = require('../schemas/Customer');
+const Recipients = require('../schemas/Recipient');
 
 router.get('/', (req, res, next) => {
     Account
@@ -101,16 +102,50 @@ router.get('/', (req, res, next) => {
 
   });
 
-  //Find all Accounts per Customer and Type
   router.get('/Customers/:customerId/acc/:accountNumber', (req, res, next) => {
     const id = req.params.customerId;
     const accNumber = req.params.accountNumber;
-    console.log("accNumber: ", accNumber, " id: ", id);
+    console.log("id: ", id);
     
+    
+    Recipients
+        .find({'CustomerID' : id})
+        .exec()
+        .then(doc => {
+
+            if(doc) {
+                Account.find({"AccountNumber": accNumber})
+                .exec()
+                .then(item => {
+                    if(item.AccountNumber == doc.AccountNumber) {
+                        res.status(200).json(item);
+                    } else {
+                        res.status(404).json({
+                            message: 'No valid entry found'
+                        })              
+                    }
+                })
+
+            } else {
+                res.status(404).json({
+                    message: 'No valid entry found'
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        })
+
+    
+    /*
     Account
         .find({'CustomerID' : id, 'AccountNumber' : accNumber})
         .exec()
         .then(doc => {
+
             if(doc){
                 res.status(200).json(doc);
             }
@@ -126,7 +161,7 @@ router.get('/', (req, res, next) => {
                 error: err
             })
         })
-
+*/
   });
 
 

@@ -1,5 +1,5 @@
-const Customer = require('../Schemas/Customer');
-const Account = require('../Schemas/Account');
+const Customer = require('../schemas/Customer');
+const Account = require('../schemas/Account');
 
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
