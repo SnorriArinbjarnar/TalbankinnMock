@@ -35,6 +35,12 @@ Customer.find({}, (err, customers)=> {
             CurrentBalance: 50000,
             AccountType: 'Vaxtareikningur',
             AccountNumber: 'kt-26-2023'
+        }),
+        new Account({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Atli'),
+            CurrentBalance: 24000,
+            AccountType: 'Debet',
+            AccountNumber: '2119863199-26-3039'
         })
     ];
 

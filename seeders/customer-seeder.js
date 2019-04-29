@@ -37,6 +37,14 @@ var customers = [
         Address: 'Dúfnahólum 12',
         City: 'Breiðholt',
         email: 'leifsip@dj.is'
+    }),
+    new Customer({
+        FirstName: 'Atli',
+        LastName: 'Jónsson',
+        SocialNumber: '280495-1539',
+        Address: 'Helvíti 3',
+        City: 'Hard Nox',
+        email: 'kittyLover_69@hotmail.com'
     })
 ];
 
