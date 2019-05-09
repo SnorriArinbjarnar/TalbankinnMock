@@ -50,6 +50,31 @@ router.get('/', (req, res, next) => {
   
   });
 
+  //get account by accountNumber
+  router.get('/AccountNo/:accNo', (req, res, next) => {
+    const accNo = req.params.accNo;
+    Account
+        //.find({'_id' : id})
+        .find({'AccountNumber':accNo})
+        .exec()
+        .then(doc => {
+            console.log(doc);
+            if(doc){
+                res.status(200).json(doc);
+            }
+            else {
+                res.status(404).json({message: 'No valid entry found'});
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });  //If i dont pass anything it will find all elements
+  
+  });
+
 // Find all Accounts per customer
   router.get('/Customers/:customerId', (req, res, next) => {
     const id = req.params.customerId;
