@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <ul id = "errs">
+
+    </ul>
+
+
+    <script>
+        
+        var url = 'https://talbankinnmock.azurewebsites.net/LuisLowConfidencyLogs';
+        var request = new Request(url, {
+        method: 'GET',
+        credentials: 'include',
+        cache: 'no-cache',
+        mode:'cors'
+        });
+
+        fetch(request)
+        .then(function(response) {
+        console.log(response);
+        response.json().then(function(data){
+        console.log(data);
+        alert(data)
+        });
+        })
+        .catch(function(err){
+        console.log(err);
+        }) ;
+        
+    </script>
+</body>
+</html>

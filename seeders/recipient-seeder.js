@@ -1,9 +1,8 @@
-const Customer = require('../Schemas/Customer');
-const Recipient = require('../Schemas/Recipient');
+const Customer = require('../schemas/Customer');
+const Recipient = require('../schemas/Recipient');
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 
 const path = require('path');
 dotenv.config({path :'../.env'});
@@ -36,6 +35,12 @@ Customer.find({}, (err, customers)=> {
             FirstName: 'Mumbly',
             LastName: 'Mahooney',
             AccountNumber: '1008783399-26-2029',
+        }),
+        new Recipient({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
+            FirstName: 'Atli',
+            LastName: 'Jónsson',
+            AccountNumber: '2119863199-26-3039',
         })
     ];
 

@@ -1,8 +1,7 @@
-const Customer = require('../Schemas/Customer');
+const Customer = require('../schemas/Customer');
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 
 const path = require('path');
 dotenv.config({path :'../.env'});
@@ -37,6 +36,14 @@ var customers = [
         Address: 'Dúfnahólum 12',
         City: 'Breiðholt',
         email: 'leifsip@dj.is'
+    }),
+    new Customer({
+        FirstName: 'Atli',
+        LastName: 'Jónsson',
+        SocialNumber: '280495-1539',
+        Address: 'Helvíti 3',
+        City: 'Hard Nox',
+        email: 'kittyLover_69@hotmail.com'
     })
 ];
 
