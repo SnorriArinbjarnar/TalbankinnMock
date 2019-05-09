@@ -13,11 +13,13 @@ const BillRouter = require('./routes/bills');
 const RecipientRouter = require('./routes/recipients');
 const CreditCardRouter = require('./routes/creditcards');
 const StockRouter = require('./routes/stocks');
+const LuisLowConfidencyLogRouter = require('./routes/luisLowConfidencyLogs');
+const MainApiErrorLogRouter = require('./routes/mainApiErrorLogs');
 
 var app = express();
 
 var swaggerUi = require('swagger-ui-express'),
-    swaggerDocument = require('./example.json');
+  swaggerDocument = require('./example.json');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1',indexRouter);
+app.use('/api/v1', indexRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/Customers', CustomerRouter);
@@ -38,14 +40,16 @@ app.use('/Bills', BillRouter);
 app.use('/Recipients', RecipientRouter);
 app.use('/CreditCards', CreditCardRouter);
 app.use('/Stocks', StockRouter);
+app.use('/LuisLowConfidencyLogs', LuisLowConfidencyLogRouter);
+app.use('/MainApiErrorLogs', MainApiErrorLogRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -53,6 +57,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 module.exports = app;
