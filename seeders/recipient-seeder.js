@@ -26,21 +26,39 @@ Customer.find({}, (err, customers)=> {
     var recipients = [
         new Recipient({
             CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
-            FirstName: 'Trigger',
-            LastName: 'Happy',
-            AccountNumber: '2039863199-26-3039',
+            FirstName: 'Smári',
+            LastName: 'Guðmundsson',
+            AccountNumber: '0019300199-24-3039',
         }),
         new Recipient({
-            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifsi'),
-            FirstName: 'Mumbly',
-            LastName: 'Mahooney',
-            AccountNumber: '1008783399-26-2029',
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            FirstName: 'Guðlaug',
+            LastName: 'Ásgeirsdóttir',
+            AccountNumber: '6039213192-24-3033',
         }),
         new Recipient({
             CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
-            FirstName: 'Atli',
-            LastName: 'Jónsson',
-            AccountNumber: '2119863199-26-3039',
+            FirstName: 'Leifur',
+            LastName: 'Pálsson',
+            AccountNumber: 'kt-26-2023',
+        }),
+        new Recipient({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            FirstName: 'Bjarki',
+            LastName: 'Axelsson',
+            AccountNumber: 'kt-26-2022',
+        }),
+        new Recipient({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            FirstName: 'Valdimar',
+            LastName: 'Áslaugsson',
+            AccountNumber: '6119363199-24-3039',
+        }),
+        new Recipient({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            FirstName: 'Leifur',
+            LastName: 'Pálsson',
+            AccountNumber: 'kt-26-2023',
         })
     ];
 
