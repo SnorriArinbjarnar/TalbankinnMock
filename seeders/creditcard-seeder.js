@@ -1,6 +1,6 @@
-const Customer = require('../Schemas/Customer');
-const CreditCard = require('../Schemas/CreditCard');
-const mongoose = require('mongoose');
+const Customer = require('../schemas/Customer');
+const CreditCard = require('../schemas/CreditCard');
+
 
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -34,6 +34,26 @@ Customer.find({}, (err, customers)=> {
             CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
             CurrentBalance: 150000,
             CardType: 'Mastercard'
+        }),
+        new CreditCard({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            CurrentBalance: 90000,
+            CardType: 'Debit'
+        }),
+        new CreditCard({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            CurrentBalance: 123590,
+            CardType: 'Debit'
+        }),
+        new CreditCard({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            CurrentBalance: 180000,
+            CardType: 'VISA'
+        }),
+        new CreditCard({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            CurrentBalance: 903580,
+            CardType: 'Debit'
         })
     ];
 
