@@ -41,6 +41,96 @@ Customer.find({}, (err, customers) => {
             DueDate: Date.now(),
             Deadline: Date.now(),
             Amount: 15000
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            PayerName: 'Leifur',
+            Creditor: 'Adam og Eva',
+            CreditorAccountNumber: '1103433139-26-222',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 64500
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            PayerName: 'Leifur',
+            Creditor: 'Boltaland',
+            CreditorAccountNumber: '5298433139-26-222',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 3500
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            PayerName: 'Leifur',
+            Creditor: 'Monaco',
+            CreditorAccountNumber: '5298432453-26-222',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 900000
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Leifur'),
+            PayerName: 'Leifur',
+            Creditor: 'Hekla',
+            CreditorAccountNumber: '5298433139-11-222',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 2900000
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            PayerName: 'Smári',
+            Creditor: 'Goldfinger',
+            CreditorAccountNumber: '5298433111-22-122',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 92400
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            PayerName: 'Smári',
+            Creditor: 'Te og kaffi',
+            CreditorAccountNumber: '5298433139-26-001',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 2200
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Smári'),
+            PayerName: 'Smári',
+            Creditor: 'Háskólabúðin',
+            CreditorAccountNumber: '5298433221-28-001',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 9900
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Snorri'),
+            PayerName: 'Snorri',
+            Creditor: 'Leyniþjónustan',
+            CreditorAccountNumber: '5298433219-26-021',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 64300
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Snorri'),
+            PayerName: 'Snorri',
+            Creditor: 'Hljóðfærahúsið',
+            CreditorAccountNumber: '5234433139-26-281',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 79900
+        }),
+        new Bill({
+            CustomerID: getResourceIdByName(customers, 'FirstName', 'Snorri'),
+            PayerName: 'Snorri',
+            Creditor: 'Gleði bær',
+            CreditorAccountNumber: '5298433139-26-991',
+            DueDate: Date.now(),
+            Deadline: Date.now(),
+            Amount: 32000
         })
     ];
 
