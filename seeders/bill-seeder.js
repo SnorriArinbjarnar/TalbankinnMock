@@ -1,16 +1,16 @@
-const Customer = require('../Schemas/Customer');
-const Bill = require('../Schemas/Bill');
+const Customer = require('../schemas/Customer');
+const Bill = require('../schemas/Bill');
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 //const mongoose = require('mongoose');
 
 const path = require('path');
-dotenv.config({path :'../.env'});
+dotenv.config({ path: '../.env' });
 
 var db = mongoose.connection.collections;
 Object.keys(db).forEach(collection => {
-    if(collection == 'bills'){
+    if (collection == 'bills') {
         Bill.collection.drop();
     }
 });
@@ -22,7 +22,7 @@ mongoose.connect(process.env.DB_CONN, {
 
 const getResourceIdByName = (resources, prop, value) => resources.find(elem => elem[prop] === value);
 
-Customer.find({}, (err, customers)=> {
+Customer.find({}, (err, customers) => {
     var bills = [
         new Bill({
             CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
@@ -45,17 +45,17 @@ Customer.find({}, (err, customers)=> {
     ];
 
     var done = 0;
-    for(var i = 0; i < bills.length; i++){
-        bills[i].save(function(err, result){
+    for (var i = 0; i < bills.length; i++) {
+        bills[i].save(function (err, result) {
             if (err) { throw new Error(err); }
             done++;
-            if(done == bills.length){
+            if (done == bills.length) {
                 exit();
             }
         })
     }
 });
 
-function exit(){
+function exit() {
     mongoose.disconnect();
 }
