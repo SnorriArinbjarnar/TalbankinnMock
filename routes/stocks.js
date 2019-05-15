@@ -10,12 +10,7 @@ router.get('/', (req, res, next) => {
         .exec()
         .then(doc => {
             console.log(doc);
-            //if(doc.length >= 0){
             res.status(200).json(doc);
-            //}
-            //else {
-            //  res.status(404).json();
-            //}
         })
         .catch(err => {
             console.log(err);
@@ -29,7 +24,6 @@ router.get('/', (req, res, next) => {
 router.get('/:_id', (req, res, next) => {
     const id = req.params._id;
     Stock
-        //.find({'_id' : id})
         .findById(id)
         .exec()
         .then(doc => {
@@ -73,7 +67,6 @@ router.get('/Companys/:companyName', (req, res, next) => {
                 error: err
             })
         })
-
 });
 
 module.exports = router;

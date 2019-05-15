@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const customerSchema = mongoose.Schema({
-    //_id: mongoose.Types.ObjectId,
     FirstName: String,
     LastName: String,
     SocialNumber: String,
