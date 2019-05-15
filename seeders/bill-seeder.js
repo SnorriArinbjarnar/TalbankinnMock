@@ -31,7 +31,7 @@ Customer.find({}, (err, customers) => {
             CreditorAccountNumber: '1108443139-26-222',
             DueDate: Date.now(),
             Deadline: Date.now(),
-            Amount: 1500000
+            Amount: 22002
         }),
         new Bill({
             CustomerID: getResourceIdByName(customers, 'FirstName', 'Bjarki'),
