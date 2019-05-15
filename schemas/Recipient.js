@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const RecipientSchema = mongoose.Schema({
-    //_id: mongoose.Types.ObjectId,
     CustomerID: {
-        type: mongoose.Types.ObjectId, 
+        type: mongoose.Types.ObjectId,
         ref: 'Customer'
     },
     FirstName: String,

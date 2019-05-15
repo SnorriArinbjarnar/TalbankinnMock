@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const BillSchema = mongoose.Schema({
-    //_id: mongoose.Types.ObjectId,
     CustomerID: {
         type: mongoose.Types.ObjectId,
         ref: 'Customer'

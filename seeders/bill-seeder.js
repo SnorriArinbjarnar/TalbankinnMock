@@ -3,7 +3,6 @@ const Bill = require('../schemas/Bill');
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
-//const mongoose = require('mongoose');
 
 const path = require('path');
 dotenv.config({ path: '../.env' });
