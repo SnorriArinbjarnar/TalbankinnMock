@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 const Customer = require('../Schemas/Customer');
 const CreditCard = require('../Schemas/CreditCard');
 //const mongoose = require('mongoose');
-=======
-const Customer = require('../schemas/Customer');
-const CreditCard = require('../schemas/CreditCard');
-
->>>>>>> 625dbe1c2ca50dd2ba9777da3665ce12e8f3ea66
 
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');

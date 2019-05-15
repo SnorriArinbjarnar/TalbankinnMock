@@ -65,7 +65,7 @@
           "tags" : [
             "Customers"  
         ],
-          "description": "Returns a user based on a single ID, if the user does not have access to the pet",
+          "description": "Returns a user based on a single ID",
           "produces": [
             "application/json"
           ],
@@ -234,12 +234,47 @@
           }
         }
       },
+      "/Accounts/AccountNo/{AccountNo}": {
+        "get": {
+          "tags" : [
+            "Accounts" 
+         ],
+          "description": "Returns a account based on its Account Number",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "AccountNo",
+              "in": "path",
+              "description": "Account number of account to fetch",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
       "/Accounts/Customers/{id}": {
         "get": {
           "tags" : [
             "Accounts"  
         ],
-          "description": "Returns a account based on a customer ID, if the user does not have access to the pet",
+          "description": "Returns a account based on a customer ID",
           "produces": [
             "application/json"
           ],
@@ -291,6 +326,48 @@
               "name": "type",
               "in": "path",
               "description": "type of account",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "account response",
+              "schema": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "default": {
+              "description": "unexpected error",
+              "schema": {
+                "$ref": "#/definitions/ErrorModel"
+              }
+            }
+          }
+        }
+      },
+      "/Accounts/Customers/{customerId}/acc/{accountNumber}": {
+        "get": {
+          "tags" : [
+            "Accounts"  
+        ],
+          "description": "Returns a account based on a customer ID and account number",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "ID of customer to fetch all his accounts",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "accountNumber",
+              "in": "path",
+              "description": "account number of said customer to fetch",
               "required": true,
               "type": "string"
             }
@@ -750,9 +827,9 @@
           ],
           "responses": {
             "200": {
-              "description": "recipient response",
+              "description": "stock response",
               "schema": {
-                "$ref": "#/definitions/Recipient"
+                "$ref": "#/definitions/Stock"
               }
             },
             "default": {
