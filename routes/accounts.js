@@ -10,27 +10,20 @@ router.get('/', (req, res, next) => {
         .find()
         .exec()
         .then(doc => {
-            console.log(doc);
-            //if(doc.length >= 0){
                 res.status(200).json(doc);
-            //}
-            //else {
-              //  res.status(404).json();
-            //}
+           
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             })
-        });  //If i dont pass anything it will find all elements
+        });  
   
   });
 
   router.get('/:_id', (req, res, next) => {
     const id = req.params._id;
     Account
-        //.find({'_id' : id})
         .findById(id)
         .exec()
         .then(doc => {
@@ -47,7 +40,7 @@ router.get('/', (req, res, next) => {
             res.status(500).json({
                 error: err
             })
-        });  //If i dont pass anything it will find all elements
+        });  
   
   });
 
@@ -55,7 +48,6 @@ router.get('/', (req, res, next) => {
   router.get('/AccountNo/:accNo', (req, res, next) => {
     const accNo = req.params.accNo;
     Account
-        //.find({'_id' : id})
         .find({'AccountNumber':accNo})
         .exec()
         .then(doc => {
@@ -64,7 +56,7 @@ router.get('/', (req, res, next) => {
                 res.status(200).json(doc);
             }
             else {
-                res.status(404).json({message: 'No valid entry found'});
+                res.status(404).json({message: 'Account not found'});
             }
         })
         .catch(err => {
@@ -72,7 +64,7 @@ router.get('/', (req, res, next) => {
             res.status(500).json({
                 error: err
             })
-        });  //If i dont pass anything it will find all elements
+        });  
   
   });
 
@@ -119,7 +111,6 @@ router.get('/', (req, res, next) => {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             })
@@ -130,8 +121,6 @@ router.get('/', (req, res, next) => {
   router.get('/Customers/:customerId/acc/:accountNumber', (req, res, next) => {
     const id = req.params.customerId;
     const accNumber = req.params.accountNumber;
-    console.log("id: ", id);
-    
     
     Recipients
         .find({'CustomerID' : id})
@@ -158,35 +147,11 @@ router.get('/', (req, res, next) => {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             })
         })
 
-    
-    /*
-    Account
-        .find({'CustomerID' : id, 'AccountNumber' : accNumber})
-        .exec()
-        .then(doc => {
-
-            if(doc){
-                res.status(200).json(doc);
-            }
-            else {
-                res.status(404).json({
-                    message: 'No valid entry found'
-                })
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            })
-        })
-*/
   });
 
 
@@ -207,7 +172,6 @@ router.get('/', (req, res, next) => {
                 return account.save();
             })
             .then(result => {
-                console.log(result);
                 res.status(201).json({
                     message: 'Account created',
                     createdRecipient: {
@@ -234,10 +198,6 @@ router.get('/', (req, res, next) => {
         });
     }
     const id = req.params.accountId;
-    //const updateOps = {};
-
-    console.log(req.body);
-
     let fields = {
         CurrentBalance: req.body.CurrentBalance
     };
@@ -250,11 +210,9 @@ router.get('/', (req, res, next) => {
                           message: `Account not found with id ${id}`
                       })
                   }
-                console.log(result);
                 res.status(200).json(result);
               })
               .catch(err => {
-                  console.log(err);
                   return res.status(500).json({
                       error: err
                   })
