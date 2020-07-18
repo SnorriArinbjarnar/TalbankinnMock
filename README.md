@@ -2,16 +2,17 @@
 An simple API for a banking system.
 localhost:3000/api-docs/
 
-
 ## Setup
 ### Install
-npm install
+```npm install```
 ### Add .env file
 The project is connected to Mongodb Atlas. Before running setup a mongodb atlas account.
-Create a .env file in the root of the project and assign the mongodb connection string to
-DB_CONN.
+Create a ```.env``` file in the root of the project and assign the mongodb connection string to
+```DB_CONN```.
+### Run seed files for some initial data
+Inside seeders are scripts you can run to populate the database
 ### Run
-npm start
+```npm start```
 
 ## Request and Response Examples
 
