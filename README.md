@@ -1,5 +1,18 @@
 # TalbankinnMock
-https://talbankinnmock.azurewebsites.net/
+An simple API for a banking system.
+localhost:3000/api-docs/
+
+
+## Setup
+### Install
+npm install
+### Add .env file
+The project is connected to Mongodb Atlas. Before running setup a mongodb atlas account.
+Create a .env file in the root of the project and assign the mongodb connection string to
+DB_CONN.
+### Run
+npm start
+
 ## Request and Response Examples
 
 ### Customers
